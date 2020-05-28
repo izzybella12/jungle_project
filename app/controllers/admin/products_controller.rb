@@ -1,5 +1,7 @@
 class Admin::ProductsController < ApplicationController
 
+  http_basic_authenticate_with name: @AUTH_NAME, password: @AUTH_PASSWORD
+
   def index
     @products = Product.order(id: :desc).all
   end
@@ -35,6 +37,14 @@ class Admin::ProductsController < ApplicationController
       :image,
       :price
     )
+  end
+
+  def name 
+    @AUTH_NAME
+  end
+
+  def password
+    @AUTH_PASSWORD
   end
 
 end

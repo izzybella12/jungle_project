@@ -7,22 +7,45 @@
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
 
-    <% @order.line_items.to_a.each do |item| %>
+    <table>
+      <thread>
+        <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        </tr>
+      </thread>
+      <% @order.line_items.to_a.each do |item| %>
 
-    <%= image_tag @order.line_items.to_a[0].product.image.tiny %>
-    <h5>
-    <%= item.product.name%>
-    </h5>
-    <span>
-    <%= item.product.description%>
-    </span>
-    <span>Quantity: <%= item.quantity %></span>
-    <span>Price: <%= humanized_money_with_symbol item.total_price %></span>
-
-    <% end %>
-
-    <span>Total: <%=humanized_money_with_symbol @order.total %></span>
-    <span><%= @order.email %></span>
+      <tbody>
+        <tr>
+          <td>
+            <%= image_tag item.product.image.tiny %>
+            <h5>
+            <%= item.product.name%>
+            </h5>
+            <span>
+            <%= item.product.description%>
+            </span>
+          </td>
+          <td>
+            <span>Quantity: <%= item.quantity %></span>
+          </td>
+          <td>
+            <span>Price: <%= humanized_money_with_symbol item.total_price %></span>
+          </td>
+        <% end %>
+        </tr>
+      </tbody>
+        <tfoot>
+          <th>
+            <span><%= @order.email %></span>
+          </th>
+          <th> 
+            <span>Total: <%=humanized_money_with_symbol @order.total %></span>
+          </th>
+        </tfoot>
+    </table>
 
   </div>
 
