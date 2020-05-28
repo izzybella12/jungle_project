@@ -6,8 +6,10 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <h6><%= @order.email %></h6>
 
-    <table>
+    <div class="panel panel-default items">
+    <table class="table table-bordered">
       <thread>
         <tr>
         <th>Product</th>
@@ -38,14 +40,11 @@
         </tr>
       </tbody>
         <tfoot>
-          <th>
-            <span><%= @order.email %></span>
-          </th>
-          <th> 
-            <span>Total: <%=humanized_money_with_symbol @order.total %></span>
-          </th>
+          <th>TOTAL: </th>
+          <th colspan="2"><%=humanized_money_with_symbol @order.total %></th>
         </tfoot>
     </table>
+    </div>
 
   </div>
 
