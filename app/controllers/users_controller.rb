@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save 
       flash[:notice] = "Account created successfully!"
+      session[:user_id] = @user.id
       redirect_to root_path
     else 
       flash.now.alert = "Oops, couldn't create account. Please make sure you're using a valid email and password."
