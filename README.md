@@ -4,6 +4,11 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 I picked up the project where it was left off and filled in some features such as adding product/category for Admin pages, authentication for Admin, order summary page, user authentication... I implemented the views with bootstrap and dove into MVC (setting up routes, views, controllers...). I also tested the project with RSpec and Capybara (one of my favorite parts)! Overall, had a lot of fun. 
 
+## Screenshots
+!["Order Reciept"]()
+!["Admin Category Page"]()
+!["Sign Up Form"]()
+
 ## Setup
 
 1. Run `bundle install` to install dependencies
