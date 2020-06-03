@@ -25,9 +25,8 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
 
     expect(page).to have_content('Name')
 
-
-    puts page.html
-    save_screenshot
+    # puts page.html
+    # save_screenshot
   end
 
   scenario "Changed pages" do
