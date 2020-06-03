@@ -6,7 +6,11 @@ I picked up the project where it was left off and filled in some features such a
 
 ## Screenshots
 !["Order Reciept"](https://github.com/izzybella12/jungle_project/blob/master/docs/order_reciept.png?raw=true)
+
+
 !["Admin Category Page"](https://github.com/izzybella12/jungle_project/blob/master/docs/new_category_admin.png?raw=true)
+
+
 !["Sign Up Form"](https://github.com/izzybella12/jungle_project/blob/master/docs/sign_up_form.png?raw=true)
 
 ## Setup
