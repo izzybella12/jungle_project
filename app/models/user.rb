@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  before_save :downcase_fields
   
   has_secure_password 
   validates :email, presence: true, uniqueness: true
@@ -8,19 +7,14 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 8}
   validates :password_confirmation, presence: true
 
-  # def self.authenticate_with_credentials(email, password)
-  #   # email_formated = email.strip.downcase!
-  #   user = User.find_by(email)
+  def self.authenticate_with_credentials(email, password)
+    modified_email = email.downcase.strip
+    user = User.find_by_email(modified_email)
 
-  #   if user && user.authenticate(password)
-  #     user 
-  #   else 
-  #     nil
-  #   end
-  # end
-
-  # def downcase_fields
-  #   self.email.downcase!
-  # end
-
+    if user && user.authenticate(password)
+      user 
+    else 
+      nil
+    end
+  end
 end

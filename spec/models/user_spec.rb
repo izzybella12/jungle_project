@@ -81,4 +81,48 @@ RSpec.describe User, type: :model do
       expect(@user.id).to be nil
     end
   end
+
+  describe "authenticate_with_credentials" do
+
+    before do
+      @user = User.new 
+      @user.first_name = "Isabella"
+      @user.last_name = "Pana"
+      @user.email = "isabella@yahoo.com"
+      @user.password = "12345678"
+      @user.password_confirmation = "12345678"
+      @user.save
+    end
+
+    it "verifies that the email and password in combo match ones in the database" do
+      @foreign_user = User.authenticate_with_credentials(@user.email, @user.password)
+      expect(@foreign_user).to be_instance_of(User)
+      expect(@foreign_user.id).to eq(@user.id)
+    end
+
+    it "verifies that the email must match an email in the database" do
+      @foreign_user = User.authenticate_with_credentials("isa@yahoo.com", @user.password)
+      expect(@foreign_user).to_not be_instance_of(User)
+      expect(@foreign_user).to be nil
+    end
+
+    it "verifies that the password must match the password in the database" do
+      @foreign_user = User.authenticate_with_credentials(@user.email, "14234243")
+      expect(@foreign_user).to_not be_instance_of(User)
+      expect(@foreign_user).to be nil
+    end
+
+    it "verifies that the email is not case sensitive" do
+      @foreign_user = User.authenticate_with_credentials("ISABELLA@yahoo.com", @user.password)
+      expect(@foreign_user).to be_instance_of(User)
+      expect(@foreign_user.id).to eq(@user.id)
+    end
+
+    it "verifies that spaces will be stripped before and after an email" do
+      @foreign_user = User.authenticate_with_credentials("    isabella@yahoo.com    ", @user.password)
+      expect(@foreign_user).to be_instance_of(User)
+      expect(@foreign_user.id).to eq(@user.id)
+    end
+
+  end
 end
